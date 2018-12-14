@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="$store.state.questions[$route.params.id] != null">
         <h2>Answer Page</h2>
          <div>{{ $store.state.questions[$route.params.id].question_key }}</div>
          <div id="contents">

@@ -10,8 +10,6 @@ import EosManager from '~/assets/js/eos'
 import eosjs_ecc from 'eosjs-ecc'
 console.log("test")
 
-
-
 const eosManager = new EosManager('https://api.kylin.alohaeos.com')
 
 
