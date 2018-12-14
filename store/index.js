@@ -60,3 +60,7 @@ const createStore = () => {
   }
 
 export default createStore
+
+export const getters = {
+    
+};
