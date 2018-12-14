@@ -1,4 +1,5 @@
 const pkg = require('./package')
+require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
@@ -12,6 +13,10 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
+    ],
+    script: [
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -35,7 +40,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
+    { src: '@/plugins/storage', ssr: false }
   ],
 
   /*
@@ -46,7 +52,8 @@ module.exports = {
     '@nuxtjs/axios',
     ['@nuxtjs/google-analytics', {
       id: 'UA-130401695-3'
-    }]
+    }],
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Axios module configuration
@@ -66,4 +73,5 @@ module.exports = {
       
     }
   }
+
 }
