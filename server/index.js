@@ -5,6 +5,12 @@ const { Nuxt, Builder } = require('nuxt')
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
+const api = require('./api')
+
+//Handle Post Request
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port', port)
 
@@ -22,6 +28,9 @@ async function start() {
     await builder.build()
   }
 
+  //api
+  app.use('/api', api)
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
@@ -31,5 +40,6 @@ async function start() {
     message: `Server listening on http://${host}:${port}`,
     badge: true
   })
+
 }
 start()
