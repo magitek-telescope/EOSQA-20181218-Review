@@ -41,7 +41,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/vuetify',
-    { src: '@/plugins/storage', ssr: false }
+    { src: '@/plugins/init', ssr: false }
   ],
 
   /*

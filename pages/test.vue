@@ -1,28 +1,34 @@
 <template>
 <div>
-test
+<a @click="test">test</a>
+
+{{$store.state}}
+
+
 </div>
 </template>
 
 <script>
 import EosManager from '~/assets/js/eos'
 import eosjs_ecc from 'eosjs-ecc'
+console.log("test")
+
+
 
 const eosManager = new EosManager('https://api.kylin.alohaeos.com')
+
 
 import axios from 'axios'
 
 export default {
 
-  components: {
-    Logo,
-    VuetifyLogo
-  },
 
   methods: {
 
 
     async test(){
+
+      console.log(this.$store.commit('setPub_key', "test"))
 
       console.log("test")
 
