@@ -1,7 +1,7 @@
 <template>
 <div>
 <button v-on:click="test">test</button>
-
+{{ $store.state}}
 </div>
 </template>
 

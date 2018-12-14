@@ -6,11 +6,11 @@ const createStore = () => {
         questions: [],
         answers: []
       }),
-      
+
       mutations: {
 
         setQuestions (state, questions) {
-            state.question = questions
+            state.questions = questions
         },
 
         setAnswers (state, answers) {

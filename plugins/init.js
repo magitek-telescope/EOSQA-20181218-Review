@@ -24,9 +24,9 @@ if (process.browser) {
             limit: 100
         }
 
-        var questions = await eosManager.read(questionParam);        
+        var questions = await eosManager.read(questionParam);       
         $store.commit("setQuestions", questions)
-
+         
         var answerParam = {
             scope: "eosqarecove5",
             code: "eosqarecove5",
