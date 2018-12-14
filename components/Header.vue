@@ -4,6 +4,7 @@
     <nuxt-link to="/field">field</nuxt-link>
     <nuxt-link to="/ask">ask</nuxt-link>
     <nuxt-link to="/mypage">mypage</nuxt-link>
+    <nuxt-link to="/test">test</nuxt-link>
 
 </div>
     

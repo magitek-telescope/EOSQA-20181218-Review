@@ -1,6 +1,6 @@
 <template>
 <div>
-test
+<button v-on:click="test">test</button>
 </div>
 </template>
 
@@ -14,10 +14,6 @@ import axios from 'axios'
 
 export default {
 
-  components: {
-    Logo,
-    VuetifyLogo
-  },
 
   methods: {
 
