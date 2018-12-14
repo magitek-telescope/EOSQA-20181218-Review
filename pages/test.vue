@@ -1,14 +1,19 @@
 <template>
 <div>
 <button v-on:click="test">test</button>
+
 </div>
 </template>
 
 <script>
 import EosManager from '~/assets/js/eos'
 import eosjs_ecc from 'eosjs-ecc'
+console.log("test")
+
+
 
 const eosManager = new EosManager('https://api.kylin.alohaeos.com')
+
 
 import axios from 'axios'
 
@@ -19,6 +24,8 @@ export default {
 
 
     async test(){
+
+      console.log(this.$store.commit('setPub_key', "test"))
 
       console.log("test")
 

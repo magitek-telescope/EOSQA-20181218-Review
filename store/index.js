@@ -5,7 +5,7 @@ const createStore = () => {
       state: () => ({
         userAccount: "daidaides",
         balance: "2.0000 EOS",
-        pub_key: "EOS6kk8z5i3Eq7A1fYvxpYSjfhu9nXqCCiCuCgFTtw7dHrMEmFeeZ",
+        pub_key: "pub",
         prive_key: "5JieSd3S7SLadXS6uPdxgH2i87H4oTTxiKUHFa7eaqZHmd47gUD",
         questions: [
             {
@@ -53,8 +53,14 @@ const createStore = () => {
       }),
       mutations: {
         setUserAccount (state, userAccount) {
-        state.userAccount = userAccount
+            state.userAccount = userAccount
+        },
+
+        setPub_key (state, pub_key) {
+            state.pub_key = pub_key
+            console.log(state.pub_key)
         }
+              
       }
     })
   }
