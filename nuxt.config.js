@@ -50,6 +50,9 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-130401695-3'
+    }],
     '@nuxtjs/dotenv'
   ],
   /*
