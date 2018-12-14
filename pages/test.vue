@@ -1,9 +1,6 @@
 <template>
 <div>
-<a @click="test">test</a>
-
-{{$store.state}}
-
+<button v-on:click="test">test</button>
 
 </div>
 </template>

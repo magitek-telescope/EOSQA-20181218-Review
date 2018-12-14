@@ -72,7 +72,7 @@
                         <div class="field">
                             <textarea id="input_answer" cols="30" rows="10" ></textarea>
                         </div>
-                        <div class="ui primary submit labeled icon button" id="add_answer">
+                        <div class="ui primary submit labeled icon button" id="add_answer" v-on:click="addanswer">
                             <i class="icon edit"></i> Add Answer
                         </div>
                     </form>
@@ -86,7 +86,50 @@
 </template>
 
 <script>
+
+import EosManager from '~/assets/js/eos'
+import eosjs_ecc from 'eosjs-ecc'
+import axios from 'axios'
+
+const eosManager = new EosManager('https://api.kylin.alohaeos.com')
+
 export default {
+
+methods: {
+
+    async addanswer(){
+
+      var param = {
+            scope: "eosqarecove5",
+            code: "eosqarecove5",
+            table: 'user',
+            json: true,
+            limit: 100
+      }
+
+      var answer = document.getElementById('input_answer').value;
+      var question_key = Number(this.$route.params.id)
+      console.log(question_key)
+      
+
+      var pub_key = localStorage.getItem('eosclip_account');
+      var nonce = await eosManager.nonce(param, pub_key)
+      console.log(nonce)
+
+      var prive_key = localStorage.getItem('eosclip_priveKey');  
+     
+      var message = answer + nonce  
+      var sig = eosjs_ecc.sign(message, prive_key);
+
+      const res = await axios.post('/api/addanswer', {
+        question_key: question_key,
+        answer: answer,
+        sig: sig,
+        pub_key: pub_key
+      })
+      
+    }
+  }
 
 }
 </script>
