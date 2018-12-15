@@ -1,6 +1,4 @@
 import eosjs_ecc from 'eosjs-ecc'
-import EosManager from '~/assets/js/eos'
-const eosManager = new EosManager('https://api.kylin.alohaeos.com')
 
 if (process.browser) {
     if (localStorage.getItem('eosclip_account') == null || localStorage.getItem('eosclip_priveKey') == null) {
@@ -16,27 +14,7 @@ if (process.browser) {
 
     window.onNuxtReady(async ({$store}) => {
         
-        var questionParam = {
-            scope: "eosqarecove5",
-            code: "eosqarecove5",
-            table: 'question',
-            json: true,
-            limit: 100
-        }
 
-        var questions = await eosManager.read(questionParam);       
-        $store.commit("setQuestions", questions)
-         
-        var answerParam = {
-            scope: "eosqarecove5",
-            code: "eosqarecove5",
-            table: 'question',
-            json: true,
-            limit: 100
-        }
-
-        var answers = await eosManager.read(answerParam);        
-        $store.commit("setAnswers", answers)
 
     })
 
