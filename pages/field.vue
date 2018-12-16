@@ -1,37 +1,28 @@
 <template>
-<div>
-    <h2>Questions Field</h2>
-    <div class="ui segment">              
-        <div v-for="(question, index) in $store.state.questions" :key="question.question_key">
-            <div class="ui comments">
-                <div class="comment">
-                    <a class="avatar">
-                    <img src="/img/avatar1.png">
-                    </a>
-                    <div class="content">
-                        <a href=""></a>
-                        <a class="author">{{ question.pub_key }}</a>
-                        <div class="metadata">
-                            <div class="date">{{ question.time_stamp }}</div>
-                            <div class="rating">
-                                <i class="star icon"></i>
-                                {{ question.point }} Point
-                                <i class="eye icon"></i>
-                                {{ question.view }} View
-                                <i class="eye icon"></i>
-                            </div>
-                        </div>
-                        <p>{{ question.question_key }}</p>
-                        <div class="text">
-                            <nuxt-link :to="`/questions/${index}`">{{ question.title }}</nuxt-link>
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  <v-content>
+    <v-container grid-list-md>   
+        <v-layout row wrap v-for="(question, index) in $store.state.questions" :key="question.question_key">
+            <v-flex>
+                <v-card flat :to="`/questions/${index}`">
+                    <v-card-text>
+                        <v-flex> 
+                            <v-avatar>
+                                <img src="~/assets/img/avatar1.png" alt="avatar">
+                            </v-avatar>
+                            {{ question.pub_key }}
+                        </v-flex>
+                        <v-flex> {{ question.time_stamp }}</v-flex>
+                        <v-flex>
+                            {{ question.view }}
+                            <v-icon small>remove_red_eye</v-icon>
+                        </v-flex>
+                        <v-flex>{{ question.title }}</v-flex>                     
+                    </v-card-text>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
+  </v-content>
  
 </template>
 
