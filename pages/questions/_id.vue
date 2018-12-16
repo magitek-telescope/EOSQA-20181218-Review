@@ -1,87 +1,52 @@
 <template>
-    <div v-if="$store.state.questions[$route.params.id] != null">
-        <h2>Answer Page</h2>
-         <div>{{ $store.state.questions[$route.params.id].question_key }}</div>
-         <div id="contents">
-            <h2>Question</h2>
-            <div class="ui comments">
-                    <div class="comment">
-                        <a class="avatar">
-                        <img src="/img/avatar1.png">
-                        </a>
-                        <div class="content">
-                        <a class="author">{{ $store.state.questions[$route.params.id].pub_key }}</a>
-                        <div class="metadata">
-                                <div class="date">{{ $store.state.questions[$route.params.id].time_stamp }}</div>
-                                <div class="rating">
-                                    <i class="star icon"></i>
-                                    {{ $store.state.questions[$route.params.id].point }} Point 
-                                    <i class="eye icon"></i>
-                                    {{ $store.state.questions[$route.params.id].view }} View
-                                </div>
-                                </div>
-                        <div class="text">
-                            <div>{{ $store.state.questions[$route.params.id].title }}</div>
-                            <div>{{ $store.state.questions[$route.params.id].body }}</div>
-                        </div>
-                        
-                        </div>
-                    </div>
-            </div>
-            <h2>Answer</h2>
-
-            <div v-for="answer in $store.state.answers" :key="answer.answer_key">
-                <div id="" v-if="answer.question_key -1 == $route.params.id">
-                        <div class="ui comments">
-                            <div class="comment">
-                                <a class="avatar">
-                                <img src="/img/avatar2.png">
-                                </a>
-                                <div class="content">
-                                <a class="author">{{ answer.pub_key }}</a>
-                                <div class="metadata">
-                                    <div class="date">{{ answer.time_stamp }}</div>
-                                    <div class="rating">
-                                    <i class="star icon"></i>
-                                    {{ answer.point }} Point
-                                    
-                                    </div>
-                                </div>
-                                <div class="text" >
-                                    {{ answer.answer }}
-                                </div>
-                                <div class="actions">
-                                    <a id="tippoint">Tip
-                                        <p class="answer_key" style="display: none;">{{ answer.answer_key }}</p>
-                                        <p class="point" style="display: none;">0</p>     
-                                    </a>
-                                </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    <br>
-                </div>
-            </div>
-            <div>
-                <h2>Your Answer</h2>
-                <p id="question_key" style="display: none">{{ $route.params.id }}</p>
-                
-                <div class="ui comments">
-                    <form class="ui reply form">
-                        <div class="field">
-                            <textarea id="input_answer" cols="30" rows="10" ></textarea>
-                        </div>
-                        <div class="ui primary submit labeled icon button" id="add_answer" v-on:click="addanswer">
-                            <i class="icon edit"></i> Add Answer
-                        </div>
-                    </form>
-                </div>
-                
-            </div>
-        </div>
-
-    </div>
+  <v-content>
+    <v-container grid-list-md>
+        <v-layout row wrap>
+            <v-flex>
+                <v-card>
+                    <v-card-text>
+                        <v-flex> 
+                            <v-avatar>
+                                <img src="~/assets/img/avatar1.png" alt="avatar">
+                            </v-avatar>
+                            {{ $store.state.questions[$route.params.id].pub_key }}
+                        </v-flex>
+                        <v-flex>{{ $store.state.questions[$route.params.id].time_stamp }}</v-flex>
+                        <v-flex>
+                            {{ $store.state.questions[$route.params.id].view }}
+                            <v-icon small>remove_red_eye</v-icon>
+                        </v-flex>
+                        <v-flex>{{ $store.state.questions[$route.params.id].title }}</v-flex>    
+                        <v-flex>{{ $store.state.questions[$route.params.id].body }}</v-flex>                  
+                    </v-card-text>
+                </v-card>
+            </v-flex>
+        </v-layout>
+        <v-layout row wrap  v-for="answer in $store.state.answers" :key="answer.answer_key">
+            <v-flex v-if="answer.question_key -1 == $route.params.id">
+                   <v-card>
+                        <v-card-text>
+                            <v-flex> 
+                                <v-avatar>
+                                    <img src="~/assets/img/avatar1.png" alt="avatar">
+                                </v-avatar>
+                                {{ answer.pub_key }}
+                            </v-flex>
+                            <v-flex>{{ answer.allpoint }} <v-icon small>attach_money</v-icon></v-flex>
+                            <v-flex>{{ answer.time_stamp }}</v-flex>
+                            <v-flex>{{ answer.body }}</v-flex>  
+                        </v-card-text>
+                    </v-card>
+            </v-flex>
+        </v-layout>
+        <v-layout
+            <v-flex>
+                <v-textarea label="You Answer" id="input_answer" rows="10"></v-textarea>
+                <v-btn id="add_answer" v-on:click="addanswer">Add Answer</v-btn>
+            </v-flex>
+        </v-layout>
+    </v-container>
+  </v-content>
 
 </template>
 

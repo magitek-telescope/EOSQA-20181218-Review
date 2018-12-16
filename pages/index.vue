@@ -1,8 +1,9 @@
 <template>
-<div>
-  <h2>Top Page</h2>
-</div>
- 
+  <v-content>
+    <v-container>
+      <h2>EOS QA</h2>
+    </v-container>
+  </v-content>
 </template>
 
 <script>
