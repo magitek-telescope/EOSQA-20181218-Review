@@ -79,7 +79,7 @@ router.get("/views", (req, res) => {
                 }
             }
     
-            console.log(result)
+            res.json({views: result})
     
         });
     });
