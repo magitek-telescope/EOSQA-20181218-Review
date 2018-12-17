@@ -72,6 +72,14 @@ module.exports = {
     extend(config, ctx) {
       
     }
-  }
+  },
+  vue: {
+    config: {
+    //  productionTip: true,
+     devtools: true,
+    }
+  },
 
 }
+
+

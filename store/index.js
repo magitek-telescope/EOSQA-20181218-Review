@@ -34,18 +34,18 @@ const createStore = () => {
         }
   
         var questions = await eosManager.read(questionParam);       
-        commit("setQuestions", questions)          
-
+        commit("setQuestions", questions)         
+        
         var answerParam = {
           scope: "eosqarecove5",
           code: "eosqarecove5",
-          table: 'question',
+          table: 'answer',
           json: true,
           limit: 100
         }
 
         var answers = await eosManager.read(answerParam);        
-        commit("setAnswers", answers)        
+        commit("setAnswers", answers) 
 
         }
       }
