@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
-
 import EosManager from '~/assets/js/eos'
+import axios from 'axios'
 const eosManager = new EosManager('https://kylin.eoscanada.com')
 
 const createStore = () => {
@@ -45,12 +45,13 @@ const createStore = () => {
         }
 
         var answers = await eosManager.read(answerParam);        
-        commit("setAnswers", answers) 
+        commit("setAnswers", answers)         
 
         }
       }
 
     })
+
   }
 
 export default createStore

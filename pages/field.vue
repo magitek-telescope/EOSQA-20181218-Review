@@ -28,8 +28,9 @@
 
 <script>
 
-
 export default {
+
+
 
 }
 </script>
