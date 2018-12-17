@@ -22,7 +22,8 @@ router.post("/addanswer", (req, res) => {
     const param = req.body;
 
     eos.contract(process.env.CONTRACT).then(contract => {
-        contract.addanswer(param.question_key, param.answer, process.env.ACCOUNT, param.sig, param.pub_key, options).then(res => {
+        contract.addanswer(param.question_key, param.answer, process.env.ACCOUNT, param.sig, param.pub_key, options).then(response => {
+            res.json({status: true})
             console.log("success");
         }).catch(err => {
             console.log(err);
@@ -51,7 +52,8 @@ router.post("/addquestion", (req, res) => {
     const param = req.body;
 
     eos.contract(process.env.CONTRACT).then(contract => {
-        contract.addquestion(param.question_title, param.question_body, process.env.ACCOUNT, param.sig, param.pub_key, options).then(res => {
+        contract.addquestion(param.question_title, param.question_body, process.env.ACCOUNT, param.sig, param.pub_key, options).then(response => {
+            res.json({status: true})
             console.log("success");
         }).catch(err => {
             console.log(err);

@@ -23,7 +23,7 @@
             </v-flex>
         </v-layout>
         <v-layout row wrap  v-for="answer in $store.state.answers" :key="answer.answer_key">
-            <v-flex v-if="answer.question_key -1 == $route.params.id">
+            <v-flex v-if="answer.question_key == $route.params.id">
                    <v-card>
                         <v-card-text>
                             <v-flex> 
@@ -34,12 +34,12 @@
                             </v-flex>
                             <v-flex>{{ answer.allpoint }} <v-icon small>attach_money</v-icon></v-flex>
                             <v-flex>{{ answer.time_stamp }}</v-flex>
-                            <v-flex>{{ answer.body }}</v-flex>  
+                            <v-flex>{{ answer.answer }}</v-flex>  
                         </v-card-text>
                     </v-card>
             </v-flex>
         </v-layout>
-        <v-layout
+        <v-layout>
             <v-flex>
                 <v-textarea label="You Answer" id="input_answer" rows="10"></v-textarea>
                 <v-btn id="add_answer" v-on:click="addanswer">Add Answer</v-btn>
@@ -56,7 +56,8 @@ import EosManager from '~/assets/js/eos'
 import eosjs_ecc from 'eosjs-ecc'
 import axios from 'axios'
 
-const eosManager = new EosManager('https://api.kylin.alohaeos.com')
+// const eosManager = new EosManager('https://api.kylin.alohaeos.com')
+const eosManager = new EosManager('https://kylin.eoscanada.com')
 
 export default {
 
@@ -85,12 +86,30 @@ methods: {
      
       var message = answer + nonce  
       var sig = eosjs_ecc.sign(message, prive_key);
+      
+      var self = this
 
       const res = await axios.post('/api/addanswer', {
         question_key: question_key,
         answer: answer,
         sig: sig,
         pub_key: pub_key
+      }).then(async function (response){
+          if(response.data.status){
+              var answerParam = {
+                    scope: "eosqarecove5",
+                    code: "eosqarecove5",
+                    table: 'answer',
+                    json: true,
+                    limit: 100
+                    }
+
+            var answers = await eosManager.read(answerParam);  
+            self.$store.commit("setAnswers", answers)
+            console.log(self.$store)
+
+          }
+         
       })
       
     }

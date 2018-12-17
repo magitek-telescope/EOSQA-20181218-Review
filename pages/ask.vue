@@ -15,7 +15,8 @@ import EosManager from '~/assets/js/eos'
 import eosjs_ecc from 'eosjs-ecc'
 import axios from 'axios'
 
-const eosManager = new EosManager('https://api.kylin.alohaeos.com')
+// const eosManager = new EosManager('https://api.kylin.alohaeos.com')
+const eosManager = new EosManager('https://kylin.eoscanada.com')
 
 
 
@@ -44,11 +45,30 @@ methods: {
       var message = title + body + nonce  
       var sig = eosjs_ecc.sign(message, prive_key);
 
+      var self = this
+      console.log(this)
+
       const res = await axios.post('/api/addquestion', {
         question_title: title,
         question_body: body,
         sig: sig,
         pub_key: pub_key
+      }).then(async function (response){
+          if(response.data.status){
+              var questionParam = {
+                    scope: "eosqarecove5",
+                    code: "eosqarecove5",
+                    table: 'question',
+                    json: true,
+                    limit: 100
+                    }
+
+            var questions = await eosManager.read(questionParam);  
+            self.$store.commit("setQuestions", questions)
+            console.log(self.$store)
+            console.log()
+          }
+         
       })
       
     }
