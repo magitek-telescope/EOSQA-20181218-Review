@@ -46,7 +46,8 @@ methods: {
       var sig = eosjs_ecc.sign(message, prive_key);
 
       var self = this
-      console.log(this)
+      var ans = this.$store.state.questions
+      var id = "";
 
       const res = await axios.post('/api/addquestion', {
         question_title: title,
@@ -65,12 +66,17 @@ methods: {
 
             var questions = await eosManager.read(questionParam);  
             self.$store.commit("setQuestions", questions)
-            console.log(self.$store)
-            console.log()
+
+            for(let i = ans.length - 1; i > 0; i--){
+              if(ans[i].pub_key == pub_key){
+                id = i + 1
+                self.$store.$router.push({ path: `/questions/${id}` })
+                break;
+              }
+            }
           }
-         
       })
-      
+
     }
   }
 
