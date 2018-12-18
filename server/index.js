@@ -1,4 +1,3 @@
-
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
@@ -8,9 +7,9 @@ const port = process.env.PORT || 3000
 const api = require('./api')
 
 //Handle Post Request
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+var bodyParser = require('body-parser')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.set('port', port)
 
@@ -40,6 +39,5 @@ async function start() {
     message: `Server listening on http://${host}:${port}`,
     badge: true
   })
-
 }
 start()
